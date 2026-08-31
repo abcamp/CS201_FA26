@@ -2,7 +2,7 @@
 title: "CS201 - Introduction & Getting Started with R & RStudio"
 subtitle: "GitHub, warm-up, and a first look at mtcars"
 author: "Amber Camp"
-date: "2025-09-08"
+date: "2026-08-31"
 format: html
 editor: visual
 ---
@@ -39,6 +39,8 @@ Who was able to figure out why `0.1 + 0.1 + 0.1 - 0.3 ≠ 0`?
 Try it!
 
 ```{r}
+#| label: extra credit answer
+
 0.1 + 0.1 + 0.1 - 0.3
 0.3 - 0.1 - 0.1 - 0.1 # a variation
 
@@ -69,6 +71,8 @@ Explanation:
 This gives you access to packages/libraries, which are like custom/specialized tools so that you can do more with R.
 
 ```{r, message = FALSE}
+#| label: load packages
+
 # install.packages("tidyverse")
 library(tidyverse)
 ```
@@ -86,12 +90,16 @@ Both of the following create a table from the dataset `mtcars` with columns for 
 **Base R:**
 
 ```{r, message = FALSE}
+#| label: Base R example
+
 mtcars[mtcars$cyl == 6 & mtcars$mpg > 20, c("mpg", "hp")]
 ```
 
 **tidyverse:**
 
-```{r, message = FALSE}
+```{r tidyverse-example, message = FALSE}
+#| label: tidyverse example
+
 mtcars %>%
   filter(cyl == 6, mpg > 20) |> # reminder that %>% is the same thing
   select(mpg, hp)
@@ -108,43 +116,64 @@ mtcars %>%
 Start by exploring the data below. It's always good to ensure you understand what is contained in your dataset.
 
 ```{r, message = FALSE}
+#| label: load data
+
 data(mtcars) # reads in the data & adds it to your environment as a dataframe
 mtcars
 
+mtcars <- mtcars |> 
+  rownames_to_column("model")
+
+View(mtcars)
+head(mtcars, 10) # preview first few lines, can designate how many
+summary(mtcars)
+?mtcars # opens help info
+
+tail(mtcars)
 ```
 
-- 
+- How many rows and columns are in the `mtcars` dataframe?
 
-  ## How many rows and columns are in the dataframe?
+  - 32 rows (observations) & 12 columns (variables)
 
-- 
+- What are the variables you see?
 
-  ## What are the variables you see?
+  - `wt`, `mpg`, `am` , etc.
 
-- 
+- How might you view the last few rows of the dataframe with a single function?
 
-  ## How might you view the last few rows of the dataframe with a single function?
+  - `tail()`
 
 ### Quick Questions
 
 - What is the average `mpg` overall?
 
 ```{r, warning=FALSE}
+#| label: mean mpg
 
+mean(mtcars) # WRONG
+mean(mpg) # WRONG AGAIN
+
+# you need to select the specific variable
+mean(mtcars$mpg) # the $ lets you select a variable/column within df
 
 ```
 
 - Can you find the mean of another variable?
 
 ```{r, warning=FALSE}
+#| label: mean qsec
 
+mean(mtcars$qsec)
 
 ```
 
 - Can you find the median?
 
 ```{r, warning=FALSE}
+#| label: median
 
+median(mtcars$mpg) # see how easy? :)
 
 ```
 
@@ -153,7 +182,13 @@ mtcars
 Make a scatter plot of `mtcars` with `weight` on the x-axis and `mpg` on the y-axis. Use what you learned last class!
 
 ```{r, warning=FALSE}
+#| label: scatter plot
+
 # this is a scatterplot of mpg by wt
+# borrow code from last class!
+
+ggplot(data = mtcars, aes(x = wt, y = mpg)) +
+  geom_point()
 
 
 ```
@@ -165,8 +200,32 @@ Create a scatter plot and histogram of two variables of your choice (try to make
 Try beautifying your plots using what you have learned so far.
 
 ```{r, warning=FALSE}
+#| label: exit tickets
 
+# scatter plot
+ggplot(data = mtcars, aes(x = disp, y = mpg)) +
+  geom_point()
 
+# histogram
+ggplot(data = mtcars, aes(x = drat)) + # x only, no y because y is automatically "count"
+  geom_histogram()
+
+# make a boxplot
+ggplot(data = mtcars, aes(x = am, y = mpg)) +
+  geom_boxplot()
+
+# am is currently numeric--not so helpful for our boxplot
+# needs to be factor because it's a categorical variable
+# convert am to factor by creating new am_f variable
+mtcars <- mtcars |> 
+  mutate(am_f = factor(am, labels = c("auto", "manual")))
+
+class(mtcars$am_f) # check the class of our new variable
+
+ggplot(data = mtcars, aes(x = am_f, y = mpg)) +
+  geom_boxplot()
+
+# looks much better now!
 ```
 
 Save, stage, commit, and push to GitHub!!
