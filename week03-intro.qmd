@@ -21,7 +21,7 @@ editor: visual
 What is the difference between R and RStudio and why do you need to have both for this class?
 
 - **R** is the programming language and engine
-- **RStudio** is the IDE (workspace) that makes using R easier
+- **RStudio** is the IDE (Integrated Development Environment –your workspace) that makes using R easier
 - You *can* run R without RStudio, but you probably wouldn’t want to (ask me how I know)
 
 ## Git vs. GitHub
@@ -113,12 +113,17 @@ mtcars
 
 ```
 
-- How many rows and columns are in the dataframe?
-  - 
-- What are the variables you see?
-  - 
-- How might you view the last few rows of the dataframe with a single function?
-  - 
+- 
+
+  ## How many rows and columns are in the dataframe?
+
+- 
+
+  ## What are the variables you see?
+
+- 
+
+  ## How might you view the last few rows of the dataframe with a single function?
 
 ### Quick Questions
 
