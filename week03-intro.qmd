@@ -16,8 +16,6 @@ editor: visual
   - Base R vs. tidyverse (conceptual only)
   - Play with `mtcars`
 
-------------------------------------------------------------------------
-
 ## R vs. RStudio
 
 What is the difference between R and RStudio and why do you need to have both for this class?
@@ -25,8 +23,6 @@ What is the difference between R and RStudio and why do you need to have both fo
 - **R** is the programming language and engine
 - **RStudio** is the IDE (workspace) that makes using R easier
 - You *can* run R without RStudio, but you probably wouldn’t want to (ask me how I know)
-
-------------------------------------------------------------------------
 
 ## Git vs. GitHub
 
@@ -36,9 +32,7 @@ Similarly, remember that Git and GitHub are *not the same thing*.
 - **GitHub**: Hosts your Git repositories online for sharing, backup, and collaboration
 - Together: You can track your work + share it with others
 
-------------------------------------------------------------------------
-
-## Extra Credit Question
+## Extra Credit Question (from last time)
 
 Who was able to figure out why `0.1 + 0.1 + 0.1 - 0.3 ≠ 0`?
 
@@ -74,7 +68,7 @@ Explanation:
 
 This gives you access to packages/libraries, which are like custom/specialized tools so that you can do more with R.
 
-```{r}
+```{r, message = FALSE}
 # install.packages("tidyverse")
 library(tidyverse)
 ```
@@ -91,13 +85,13 @@ Both of the following create a table from the dataset `mtcars` with columns for 
 
 **Base R:**
 
-```{r}
+```{r, message = FALSE}
 mtcars[mtcars$cyl == 6 & mtcars$mpg > 20, c("mpg", "hp")]
 ```
 
 **tidyverse:**
 
-```{r}
+```{r, message = FALSE}
 mtcars %>%
   filter(cyl == 6, mpg > 20) |> # reminder that %>% is the same thing
   select(mpg, hp)
@@ -107,15 +101,13 @@ mtcars %>%
 - `tidyverse` uses verbs like `filter()` and `select()` chained with pipes for readability
 - Base R powerful and always available. `tidyverse` makes code more expressive and human-readable, especially for multi-step data wrangling (it's often easier to use!)
 
-------------------------------------------------------------------------
-
 ## First Look: `mtcars`
 
 `mtcars` is a classic, built-in dataset. If you've learned R before, you've probably interacted with `mtcars`.
 
 Start by exploring the data below. It's always good to ensure you understand what is contained in your dataset.
 
-```{r}
+```{r, message = FALSE}
 data(mtcars) # reads in the data & adds it to your environment as a dataframe
 mtcars
 
@@ -123,56 +115,51 @@ mtcars
 
 - How many rows and columns are in the dataframe?
   - 
-- What variables look interesting?
+- What are the variables you see?
+  - 
 - How might you view the last few rows of the dataframe with a single function?
   - 
-
-------------------------------------------------------------------------
 
 ### Quick Questions
 
 - What is the average `mpg` overall?
 
-```{r}
+```{r, warning=FALSE}
 
 
 ```
 
 - Can you find the mean of another variable?
 
-```{r}
+```{r, warning=FALSE}
 
 
 ```
 
 - Can you find the median?
 
-```{r}
+```{r, warning=FALSE}
 
 
 ```
-
-------------------------------------------------------------------------
 
 ### Quick Plot
 
 Make a scatter plot of `mtcars` with `weight` on the x-axis and `mpg` on the y-axis. Use what you learned last class!
 
-```{r}
+```{r, warning=FALSE}
 # this is a scatterplot of mpg by wt
 
 
 ```
 
-------------------------------------------------------------------------
-
 ## Exit Ticket
 
 Create a scatter plot and histogram of two variables of your choice (try to make it different from above). For your histogram, use `geom_histogram` and only assign an x variable in your `aes`.
 
-Can you beautify your plots in any way?
+Try beautifying your plots using what you have learned so far.
 
-```{r}
+```{r, warning=FALSE}
 
 
 ```
