@@ -1,4 +1,4 @@
-# Welcome to CS201 🤓 
+# Welcome to CS-201 🤓 
 
 #### Class Location & Times
 🏫 Data Science Center, Tredtin Hall, Monday, Wednesday & Friday | 10:30–11:20 
