@@ -1,6 +1,7 @@
 ---
 title: "Analyzing Penguins Data"
 author: 
+  - "name"
   - "Amber Camp"
   - "Connor Flynn"
 date: 9/2/26
@@ -126,9 +127,10 @@ The `skim()` function from the `skimr` package gives us a cool overview of the d
 ```{r, message=FALSE}
 
 summary(penguins_data)
-head(penguins_data)
+head(penguins_data, 10)
+tail(penguins_data, 5)
 
-skimr::skim(penguins_data)
+skim <- skimr::skim(penguins_data)
 ```
 
 ## Exercise 1
@@ -139,12 +141,33 @@ What other packages/functions do a similar thing?
 
 - Type your answer(s) in bullet points below
 
-  - 
+  - summarytools
 
-- Let's check one out
+  - forecast
+
+  - desctable
+
+  - dlookr
+
+  - pastecs
+
+  - Hmisc
+
+  - psych
+
+  - DataExplorer
+
+  - Let's check one out `DataExplorer`
 
 ```{r, message=FALSE}
 
+install.packages("DataExplorer")
+library(DataExplorer)
+
+introduce(penguins_data)
+?DataExplorer
+
+plot_intro(penguins_data)
 
 ```
 
@@ -156,10 +179,11 @@ What other packages/functions do a similar thing?
 
 Let's start with the most basic plot we can make. Note that the **package** is `ggplot2` and the **function** we use is `ggplot`.
 
-```{r, message=FALSE}
+```{r, message=FALSE, warning=FALSE}
 
-ggplot(data = penguins_data, aes(x = flipper_length_mm)) 
-# what do we add here?
+ggplot(data = penguins_data, aes(x = flipper_length_mm)) +
+  geom_histogram()
+
 
 ```
 
@@ -167,11 +191,14 @@ Cool! What if we color the histogram by species
 
 ```{r, message=FALSE}
 
-ggplot(data = penguins_data, aes(x = flipper_length_mm)) 
+ggplot(data = penguins_data, aes(x = flipper_length_mm, fill = species)) +
+  geom_histogram() 
 
 ```
 
 Interesting! Seems like flipper length is very dependent on species of penguin
+
+# START HERE FRIDAY
 
 The magic of `ggplot2` is simplicity and *customization* so let's customize, based on these colors:
 
