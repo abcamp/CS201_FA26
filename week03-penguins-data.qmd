@@ -198,8 +198,6 @@ ggplot(data = penguins_data, aes(x = flipper_length_mm, fill = species)) +
 
 Interesting! Seems like flipper length is very dependent on species of penguin
 
-# START HERE FRIDAY
-
 The magic of `ggplot2` is simplicity and *customization* so let's customize, based on these colors:
 
 ![](https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png){fig-align="center" width="50%"}
@@ -263,9 +261,8 @@ Awesome! Let's take a look at flipper length and it's relationship to body mass
 
 ```{r, message=FALSE, warning=FALSE}
 
-ggplot(data = penguins_data, aes(x = flipper_length_mm, y = body_mass_g, color = species, shape = island)) +
-  geom_point() +
-  scale_shape_manual(values = c(1,2,13))
+ggplot(data = penguins_data, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+  geom_point()
 
 ```
 
@@ -273,7 +270,9 @@ Cool! Let's add species to this plot. What about island?
 
 ```{r, message=FALSE, warning=FALSE}
 
-# see above
+ggplot(data = penguins_data, aes(x = flipper_length_mm, y = body_mass_g, color = species, shape = island)) +
+  geom_point() +
+  scale_shape_manual(values = c(1,2,13))
   
 ```
 
@@ -317,7 +316,6 @@ ggplot(data = penguins_data, aes(x = culmen_depth_mm, fill = species)) +
     - Run `ggplotly(plot_name)` and explore! Edit `plot_name` accordingly
 
 ```{r, message=FALSE, warning=FALSE}
-
 
 
 
