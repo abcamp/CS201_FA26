@@ -161,7 +161,7 @@ What other packages/functions do a similar thing?
 
 ```{r, message=FALSE}
 
-install.packages("DataExplorer")
+# install.packages("DataExplorer")
 library(DataExplorer)
 
 introduce(penguins_data)
@@ -206,47 +206,74 @@ The magic of `ggplot2` is simplicity and *customization* so let's customize, bas
 
 ```{r, message=FALSE, warning=FALSE}
 
-
+ggplot(data = penguins_data, aes(x = flipper_length_mm, fill = species)) +
+  geom_histogram(alpha = 0.75) + # alpha changes transparency
+  scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4"), name = "Penguin Species") + # manual colors
+  theme_bw() +
+  labs(title = "Palmer Penguins' Flipper Length",
+       subtitle = "Three species observed on three islands in the Palmer Archipelago",
+       x = "Flipper Length (mm)", 
+       y = "Number of Penguins")
 
 ```
 
 Manually choosing colors is cool, but there are also color palettes available for us with `viridis`
 
-```{r, message=FALSE}
+```{r, message=FALSE, warning=FALSE}
 
-
+ggplot(data = penguins_data, aes(x = flipper_length_mm, fill = species)) +
+  geom_histogram(alpha = 0.99) + # alpha changes transparency
+  scale_fill_viridis_d(option = "magma", name = "Penguin Species") +
+  theme_bw() +
+  labs(title = "Palmer Penguins' Flipper Length",
+       subtitle = "Three species observed on three islands in the Palmer Archipelago",
+       x = "Flipper Length (mm)", 
+       y = "Number of Penguins")
 
 ```
 
 Let's investigate flipper length with another type of data viz: a box plot!
 
-```{r, message=FALSE}
+```{r, message=FALSE, warning=FALSE}
 
-
+ggplot(data = penguins_data, aes(y = flipper_length_mm, fill = species)) +
+  geom_boxplot()
 
 ```
 
 Again, let's customize! Add points for individual penguins.
 
-```{r, message=FALSE}
+```{r, message=FALSE, warning=FALSE}
 
-
+ggplot(data = penguins_data, aes(x = species, y = flipper_length_mm, fill = species)) +
+  geom_boxplot() +
+  geom_jitter(size = 0.5) +
+  theme_bw() +
+  scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4"), name = "Penguin Species")+
+  labs(title = "Palmer Penguins' Flipper Length",
+       subtitle = "Three species observed on three islands in the Palmer Archipelago",
+       x = "Flipper Length (mm)", 
+       y = "Number of Penguins") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust =1), legend.position = "none") +
+  coord_flip()
 
 ```
 
 Awesome! Let's take a look at flipper length and it's relationship to body mass
 
-```{r, message=FALSE}
+```{r, message=FALSE, warning=FALSE}
 
-
+ggplot(data = penguins_data, aes(x = flipper_length_mm, y = body_mass_g, color = species, shape = island)) +
+  geom_point() +
+  scale_shape_manual(values = c(1,2,13))
 
 ```
 
 Cool! Let's add species to this plot. What about island?
 
-```{r, message=FALSE}
+```{r, message=FALSE, warning=FALSE}
 
-
+# see above
   
 ```
 
@@ -258,17 +285,31 @@ Cool! Let's add species to this plot. What about island?
 
 ```{r, message=FALSE, warning=FALSE}
 
-
+ggplot(data = penguins_data, aes(x = culmen_depth_mm, fill = species)) +
+  geom_histogram() +
+  theme_bw() + 
+  scale_fill_viridis_d(option="mako") +
+  labs(title = "Palmer Penguins' Culmen Length",
+       subtitle = "Three species observed on three islands in the Palmer Archipelago, Antarctica",
+       x = "Culmen Length (mm)",
+       y = "Number of Penguins")
 
 ```
 
 - Part 2
 
-  - In the code chunk below create a **scatter plot** with `culmen_depth_mm` on the x axis, `body_mass_g` on the y axis, and `color` by `species` using the data frame *penguins_data*. Give the plot the theme: `theme_bw()`. Assign a color palette with `scale_color_viridis_d(option = "mako")`. Give the plot a title, subtitle and custom x and y axis titles.
+  - In the code chunk below create a **scatter plot** with `culmen_depth_mm` on the x axis, `body_mass_g` on the y axis, and `color` by `species` using the data frame *penguins_data*. Give the plot the theme: `theme_minimal()`. Assign a color palette with `scale_color_viridis_d(option = "turbo")`. Give the plot a title, subtitle and custom x and y axis titles. Customize the legend title.
 
 ```{r, message=FALSE, warning=FALSE}
 
-
+ggplot(data = penguins_data, aes(x = culmen_depth_mm, y = body_mass_g, color = species)) +
+  geom_point() +
+  theme_minimal() + 
+  scale_color_viridis_d(option="turbo", name = "Species") +
+  labs(title = "Palmer Penguins' Culmen Length",
+       subtitle = "Three species observed on three islands in the Palmer Archipelago, Antarctica",
+       x = "Culmen Length (mm)",
+       y = "Number of Penguins")
 
 ```
 
@@ -278,12 +319,21 @@ Cool! Let's add species to this plot. What about island?
 
     - Choose any plot from class today. The more detailed/robust, the better
 
-    - Paste the code for that plot below and assign the plot a name
+    - Paste the code for that plot below and [assign the plot a name]{.underline}
 
     - Run `ggplotly(plot_name)` and explore! Edit `plot_name` accordingly
 
-```{r, message=FALSE}
+```{r, message=FALSE, warning=FALSE}
 
+ggplot(data = penguins_data, aes(x = culmen_depth_mm, y = body_mass_g, color = species)) +
+  geom_point() +
+  theme_minimal() + 
+  scale_color_manual(values = c("darkorange","darkorchid","cyan4")) +
+  labs(title = "Palmer Penguins' Culmen Length",
+       subtitle = "Three species observed on three islands in the Palmer Archipelago, Antarctica",
+       x = "Culmen Length (mm)",
+       y = "Number of Penguins") +
+  theme(legend.position = "none")
 
 
 ```
