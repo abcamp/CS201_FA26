@@ -11,7 +11,7 @@ editor: visual
 
 # Transforming Data
 
-## Load Libraries
+## Load Packages
 
 ```{r, message=FALSE}
 library(tidyverse) 
@@ -45,7 +45,11 @@ We'll start by creating a scatter plot of flipper length by body mass with `colo
 ```{r, message=FALSE}
 #| label: try plotly
 
+flip_mass <- ggplot(data = penguins_data, aes(x = flipper_length_mm, y = body_mass_g, color = species, shape = island)) +
+  geom_point() +
+  theme(legend.position = "none")
 
+ggplotly(flip_mass)
 
 ```
 
@@ -56,7 +60,10 @@ Facets help us split a single plot into multiple panels, based on the values of 
 ```{r, message=FALSE, warning=FALSE}
 #| label: try faceting
 
-
+ggplot(data = penguins_data, aes(x = flipper_length_mm, y = body_mass_g, color = species, shape = island)) +
+  geom_point() +
+  theme(legend.position = "none") +
+  facet_wrap(~sex)
 
 ```
 
@@ -67,7 +74,7 @@ Confirm that by using the `unique()` function.
 ```{r, message=FALSE}
 #| label: unique values
 
-
+unique(penguins_data$sex)
 
 ```
 
@@ -76,7 +83,7 @@ Confirm that by using the `unique()` function.
 ```{r, message=FALSE}
 #| label: create a table
 
-
+table(penguins_data$sex)
 
 ```
 
@@ -85,7 +92,7 @@ Confirm that by using the `unique()` function.
 ```{r, message=FALSE}
 #| label: count NAs
 
-
+sum(is.na(penguins_data$sex))
 
 ```
 
@@ -94,23 +101,40 @@ Let's filter for observations where `sex` is either male or female and drop obse
 ```{r, message=FALSE}
 #| label: filter
 
-
+male_female_only <- penguins_data |>
+  filter(sex %in% c("MALE", "FEMALE")) |> 
+  drop_na(sex)
 
 ```
 
 - Notice in our environment pane (top right) that our \# of observations went from 344 in the data frame `penguins_data` to 333 observation in `penguins_male_female`
 
-Let's make the same style of faceted scatter plot as above frombut with the new data frame. Can you make it interactive using `plotly`?
+Let's make the same style of faceted scatter plot as above but with the new data frame. Can you make it interactive using `plotly`?
 
 ```{r, message=FALSE}
 #| label: cleaned plot
 
+mf_plot <- ggplot(data = male_female_only, aes(x = flipper_length_mm, y = body_mass_g, color = species, shape = island)) +
+  geom_point() +
+  theme(legend.position = "none") +
+  facet_wrap(~sex)
 
+ggplotly(mf_plot)
 
+####
+
+mf_plot2 <- ggplot(data = male_female_only, aes(x = flipper_length_mm, y = body_mass_g, color = species, shape = island)) +
+  geom_point() +
+  theme(legend.position = "none") +
+  facet_grid(island~sex)
+
+ggplotly(mf_plot2)
 
 ```
 
 Bonus: Instead of `facet_wrap()`, try using `facet_grid(island ~ sex)`. Now you have a grid layout with `island` on one axis and `sex` on the other.
+
+# FRIDAY
 
 ## Data Manipulation/Transformation
 

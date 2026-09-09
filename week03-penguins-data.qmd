@@ -301,7 +301,14 @@ ggplot(data = penguins_data, aes(x = culmen_depth_mm, fill = species)) +
 
 ```{r, message=FALSE, warning=FALSE}
 
-
+ggplot(data = penguins_data, aes(x = culmen_depth_mm, y = body_mass_g, color = species)) +
+  geom_point() +
+  theme_minimal() + 
+  scale_color_viridis_d(option="turbo", name = "Species") +
+  labs(title = "Palmer Penguins' Culmen Length",
+       subtitle = "Three species observed on three islands in the Palmer Archipelago, Antarctica",
+       x = "Culmen Length (mm)",
+       y = "Number of Penguins")
 
 ```
 
@@ -317,8 +324,17 @@ ggplot(data = penguins_data, aes(x = culmen_depth_mm, fill = species)) +
 
 ```{r, message=FALSE, warning=FALSE}
 
+plot <- ggplot(data = penguins_data, aes(x = culmen_depth_mm, y = body_mass_g, color = species)) +
+  geom_point() +
+  theme_minimal() + 
+  scale_color_viridis_d(option="turbo", name = "Species") +
+  labs(title = "Palmer Penguins' Culmen Length",
+       subtitle = "Three species observed on three islands in the Palmer Archipelago, Antarctica",
+       x = "Culmen Length (mm)",
+       y = "Number of Penguins")
 
-
+#plotly
+ggplotly(plot)
 ```
 
 ## Push to GitHub!
