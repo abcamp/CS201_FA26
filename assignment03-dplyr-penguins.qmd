@@ -38,7 +38,7 @@ penguins <- penguins |> # clean up the names
 
 # Instructions
 
-Due: Sunday 9/13 11:59 pm ON GITHUB AND CANVAS
+Due: Friday 9/18 11:59 pm ON GITHUB AND CANVAS
 
 Visit Allison Horst's very helpful tutorial on `dplyr` here: <https://allisonhorst.shinyapps.io/dplyr-learnr/>
 
