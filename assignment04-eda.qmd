@@ -1,6 +1,6 @@
 ---
 title: "Assignment 4: Exploratory Data Analysis"
-author: "Amber Camp"
+author: "Your Name"
 date: "`r Sys.Date()`"
 format: html
 editor: visual
@@ -14,7 +14,7 @@ In this assignment, you will practice Exploratory Data Analysis (EDA) by making 
 
 You will submit **at least 4 different plot types**, with short written interpretations for each.
 
-Part 1 is worth a total of 1 point, and Part 2 is worth 4 points (1 point for each plot & interpretation).
+Part 1 is worth a total of 1 point, and Part 2 is worth 4 points (1 point for each plot, question, and interpretation).
 
 ## Part 1: Get Your Data
 
@@ -60,15 +60,17 @@ Before you make plots, you must also:
 
   - `mean()`, `median()`, `sd()`, `min()`, `max()` for at least one numeric variable
 
+  - Remember to use `na.rm = TRUE` if you have missing values that affect summaries!
+
 ```{r}
 
 ```
 
 Write 2–3 sentences here: What do the category counts tell you? What does the numeric summary show about spread, center, or outliers?
 
-## Part 2:
+## Part 2: Visualize Your Data
 
-Create **at least 4 plots**, each of a different type. At least one of your four plots must use different variables than the others.
+Create **at least 4 plots**, each of a different type. Your plots may share variables, but each one should answer a **different question** about your data. At least one plot must include a variable that isn't in the others.
 
 Each plot should have:
 
@@ -76,7 +78,9 @@ Each plot should have:
 
 - A short interpretation (2-3 sentences) underneath
 
-Use the EDA Part 3 notes as your reference. Since this is an EDA assignment, your plots can be plain, but consider adding colors, themes, or interactivity for interpretability and visual appeal if you know how.
+  - Sample interpretation: (boxplot of `price` by `cut` from `diamonds` data): *Ideal diamonds have the lowest median price, which is surprising since Ideal is the best cut. Every cut also has a lot of very expensive outliers. One possible reason for the low Ideal prices is that Ideal diamonds might be smaller on average, which I could check by plotting carat by cut.*
+
+Use the EDA Part 3 notes as your reference. Since this is an EDA assignment, your plots can look plain, but consider adding colors, themes, or interactivity for interpretability and visual appeal if you know how.
 
 ### Plot 1
 
@@ -84,6 +88,8 @@ Use the EDA Part 3 notes as your reference. Since this is an EDA assignment, you
 # insert code here
 
 ```
+
+Question this plot answers:
 
 Interpretation:
 
@@ -94,6 +100,8 @@ Interpretation:
 
 ```
 
+Question this plot answers:
+
 Interpretation:
 
 ### Plot 3
@@ -103,6 +111,8 @@ Interpretation:
 
 ```
 
+Question this plot answers:
+
 Interpretation:
 
 ### Plot 4
@@ -111,6 +121,8 @@ Interpretation:
 # insert code here
 
 ```
+
+Question this plot answers:
 
 Interpretation:
 
