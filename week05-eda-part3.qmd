@@ -13,8 +13,10 @@ Continuing on from Parts 1 and 2. Start by loading libraries. We'll load data as
 ## Packages
 
 ```{r, message=FALSE}
+
 library(tidyverse)
 library(janitor)
+
 ```
 
 ## Data
